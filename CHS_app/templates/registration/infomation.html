@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sign up</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+</head>
+<body>
+{% include 'frontend/common/navbar.html'%}
+<div class="container bg-teal p-5">
+    <div class="modal-body">
+        <form action="{% url 'additional' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="Phone_Number">Phone_number:</label>
+                <input type="tel" class="form-control" id="Phone_Number" name="Phone_Number"
+                       placeholder="07xxxxxxxx" required>
+            </div>
+            <div class="form-group">
+                <label for="Occupation">Ocupation:</label>
+                <input type="text" class="form-control" id="Occupation" name="Occupation" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Done</button>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

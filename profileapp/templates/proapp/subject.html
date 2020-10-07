@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title%}
+subjects
+{% endblock%}
+{% block content%}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">subjects</h1>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success">
+                    subjects
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Subject Name</th>
+                            <th scope="col">subject Code</th>
+                            <th scope="col">subject Teacher</th>
+                            <th scope="col">status</th>
+                        </tr>
+                        </thead>
+                        {% for subject in subjects %}
+                        <tr>
+                            <th scope="row">{{ subject.id }}</th>
+                            <td>{{subject.Subject_name}}</td>
+                            <td>{{ subject.Subject_code }}</td>
+                            <td>{{subject.Subject_teacher}}</td>
+                        </tr>
+                        {%endfor%}
+                        </table>
+                    </table>
+                     <a href="#">
+                    <small>edit</small>
+                </a>
+                </div>
+            </div>
+        </div>
+</main>
+{% endblock%}

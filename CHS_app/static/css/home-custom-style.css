@@ -1,0 +1,31 @@
+body{
+			font: 400 15px lato,sans serif;
+			line-height: 1.8;
+			color: #818181;
+			width: auto;
+		}
+		.jumbotron{
+			background-color: #f4511e;
+			color: #fff;
+			padding: 100px 25px;
+
+		}
+		.topright{
+			position: absolute;
+  			top: 8px;
+  			right: 16px;
+  			font-size: 20px;
+  			margin: 5px;
+  			float: right;
+  			margin-right: 5px;
+		}
+		.mypics{
+			height: 100px;
+			width: 100%;
+			margin-top: 0;
+
+		}
+		.container{
+			width: 100%;
+			margin: 0;
+		}

@@ -1,0 +1,140 @@
+{% extends 'main.html' %}
+{% block title%}
+hostels
+{% endblock%}
+{% block content%}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    {% include 'chs_common_templates/messages.html' %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">hostels</h1>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentModal">
+            Add hostel
+        </button>
+        <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="studentModalLabel">hostel form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'hostels' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name">hostel Name:</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="dormcaptain">DormCaptain:</label>
+                                <input type="text" class="form-control" id="dormcaptain"
+                                       name="dormcaptain">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">DormName</th>
+            <th scope="col">DormCaptain</th>
+            <th scope="col">status</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for hostel in hostels %}
+        <tr>
+            <th scope="row">{{ hostel.id }}</th>
+            <td>{{hostel.name}}</td>
+            <td>{{hostel.dormcaptain}}</td>
+            <td>
+               <button data-toggle="modal" data-target="#update{{hostel.id}}" class="btn btn-sm btn-success">
+                        Update
+               </button>
+            </td>
+            <td>
+                <button data-toggle="modal" data-target="#delete{{hostel.id}}" class="btn btn-sm btn-info">
+                    delete
+                </button>
+            </td>
+        </tr>
+        <div class="modal fade" id="update{{hostel.id}}" tabindex="-1" role="dialog" aria-labelledby="updatehostel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updatehostel">hostel form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'update-hostel' hostel.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name">hostel Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="dormcaptain">DormCaptain:</label>
+                                <input type="text" class="form-control" id="dormcaptain"
+                                       name="dormcaptain" value="{{dormcaptain}}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+        <!--deletemodal-->
+    <div class="modal fade" id="delete{{hostel.id}}" tabindex="-1" role="dialog" aria-labelledby="deletehostel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deletehostel">Delete hostel</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'delete-hostel' hostel.id %}" method="post">
+                                {% csrf_token %}
+                                <p>Are you sure you want to delete "{{ hostel.name }}?"</p>
+                                <button type="submit" class="btn btn-primary">yes</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</main>
+{% endblock%}

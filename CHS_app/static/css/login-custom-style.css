@@ -1,0 +1,19 @@
+html,body{font-family: Arial, helvatica, sans-serif;
+		/*background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+		url("images/3.jpg")*/
+		color: white;
+		 height: 100%;
+    color: white;
+
+	}
+html,body{
+
+
+}
+#container{
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

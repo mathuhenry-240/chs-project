@@ -1,0 +1,117 @@
+{% extends 'main.html' %}
+{% block title%}
+dashboard
+{% endblock%}
+{% block content%}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    {% include 'chs_common_templates/messages.html' %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Subjects</h1>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentModal">
+           Add Subject
+        </button>
+        <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="studentModalLabel">Add Subject</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'add-subject' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="Subject_name">Subject Name:</label>
+                                <input type="text" class="form-control" id="Subject_name" name="Subject_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="Subject_code">Subject Code:</label>
+                                <input type="number" class="form-control" id="Subject_code"
+                                       name="Subject_code">
+                            </div>
+                            <div class="form-group">
+                                <label for="Subject_teacher">Subject Teacher:</label>
+                                <input type="text" class="form-control" id="Subject_teacher" name="Subject_teacher">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Subject Name</th>
+                <th scope="col">subject Code</th>
+                <th scope="col">subject Teacher</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for subject in subjects %}
+            <tr>
+                <th scope="row">{{ subject.id }}</th>
+                <td>{{subject.Subject_name}}</td>
+                <td>{{ subject.Subject_code }}</td>
+                <td>{{subject.Subject_teacher}}</td>
+                 <td>
+                    <button data-toggle="modal" data-target="#update{{ subject.id }}" class="btn btn-sm btn-success">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+             <div class="modal fade" id="update{{ subject.id }}" tabindex="-1" role="dialog" aria-labelledby="updateModal"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateModal">Edit subject Form</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'update-subject' subject.id %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="Subject_name">Subject Name:</label>
+                                    <input type="text" class="form-control" id="Subject Name" name="Subject_name"
+                                           value="{{ subject.Subject_name }}">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Subject_code">Subject Code:</label>
+                                    <input type="number" class="form-control" id="Subject Code"
+                                           name="Subject_code" value="{{ subject.Subject_code }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Subject_teacher">Subject Teacher:</label>
+                                    <input type="text" class="form-control" id="Subject Teacher" name="Subject_teacher"
+                                           value="{{ subject.Subject_teacher }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </tbody>
+        </table>
+</main>
+{% endblock%}

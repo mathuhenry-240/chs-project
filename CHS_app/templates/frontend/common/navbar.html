@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container-fluid">
+        <div class="navbar-translate">
+            <a href="#" class="navbar-brand">Central High School</a>
+            <button class="navbar-toggler" type="button" data-target="#mydata" data-toggle="collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="#navbar-collapse">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">home</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav navbar-right">
+                <li class="navbar-item mr-3">
+                    <a href="{% url 'login' %}" class="navbar-link">Log in</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="{% url 'register' %}" class="navbar-link mr-3">Sign up</a>
+                </li>
+                 <li class="navbar-item">
+                    <a href="{% url 'admin-login'%}" class="navbar-link">Admin</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

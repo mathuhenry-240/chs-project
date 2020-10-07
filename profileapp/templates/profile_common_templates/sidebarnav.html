@@ -1,0 +1,66 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+    {% if request.user.is_authenticated %}
+    <p class="text-center">online</p>
+    {% endif %}
+    <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'dashboard-parent' %}">
+                    <span data-feather="home"></span>
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    Dashboard <span></span>
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'students-parent' %}">
+                    <span></span>
+                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                    Students Details
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'subjects-student' %}">
+                    <span></span>
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    Subjects
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'events' %}">
+                    <span></span>
+                   <i class="fa fa-calendar" aria-hidden="true"></i>
+                    Events
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'fee-structure' %}">
+                    <span></span>
+                    <i class="fa fa-money" aria-hidden="true"></i>
+
+                   Fee structure
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span></span>
+                   <i class="fa fa-comments" aria-hidden="true"></i>
+                   Messages
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'hostels-dorms' %}">
+                    <span></span>
+                    <i class="fa fa-bed" aria-hidden="true"></i>
+                   Dorm
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,149 @@
+{% extends 'main.html' %}
+{% block title%}
+teaching staff
+{% endblock%}
+{% block content%}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Teaching staff</h1>
+    </div>
+    {% include 'chs_common_templates/messages.html' %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Teachers Details</h1>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentModal">
+            Add teacher
+        </button>
+        <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="studentModalLabel">Teacher form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'add-teachers' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="Tsc_no">Tsc No:</label>
+                                <input type="number" class="form-control" id="Tsc_no" name="Tsc_no">
+                            </div>
+                            <div class="form-group">
+                                <label for="First_name">First Name:</label>
+                                <input type="text" class="form-control" id="First_name" name="First_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="Last_name">Last Name:</label>
+                                <input type="text" class="form-control" id="Last_name"
+                                       name="Last_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="Email">Email:</label>
+                                <input type="email" class="form-control" id="Email" name="Email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Phone_Number">Phone_number:</label>
+                                <input type="tel" class="form-control" id="Phone_Number" name="Phone_Number"
+                                       placeholder="07xxxxxxxx">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tsc No</th>
+            <th scope="col"> Teachers name</th>
+            <th scope="col">Email</th>
+            <th scope="col">phone number</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for teacher in teachers %}
+        <tr>
+            <th scope="row">{{ teacher.id }}</th>
+            <td>{{ teacher.Tsc_no}}</td>
+            <td>
+                {{teacher.First_name}}
+                {{teacher.Last_name}}
+            </td>
+            <td>{{teacher.Email}}</td>
+            <td>{{teacher.Phone_Number}}</td>
+            <td>
+                <button data-toggle="modal" data-target="#update{{teacher.id}}" class="btn btn-sm btn-success">
+                    Update
+                </button>
+            </td>
+            <td>
+                <button data-toggle="modal" data-target="#delete{{teacher.id}}" class="btn btn-sm btn-warning">
+                    delete
+                </button>
+            </td>
+        </tr>
+        <div class="modal fade" id="update{{teacher.id}}" tabindex="-1" role="dialog" aria-labelledby="updateteacher"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateteacher">update teacher form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'update-teacher' teacher.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="Tsc_no">Tsc No:</label>
+                                <input type="number" class="form-control" id="Tsc_no" name="Tsc_no" value="{{Tsc_no}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="First_name">First Name:</label>
+                                <input type="text" class="form-control" id="First_name" name="First_name"
+                                       value="{{First_name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Last_name">Last Name:</label>
+                                <input type="text" class="form-control" id="Last_name"
+                                       name="Last_name" value="{{Last_name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Email">Email:</label>
+                                <input type="email" class="form-control" id="Email" name="Email" value="{{Email}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Phone_Number">Phone_number:</label>
+                                <input type="tel" class="form-control" id="Phone_Number" name="Phone_Number"
+                                       placeholder="07xxxxxxxx" value="{{Phone_Number}}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">update</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</main>
+{% endblock%}

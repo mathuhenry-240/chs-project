@@ -1,0 +1,158 @@
+{% extends 'main.html' %}
+{% block title%}
+parents details
+{% endblock%}
+{% block content%}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    {% include 'chs_common_templates/messages.html' %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Parents Details</h1>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentModal">
+            Add Parent
+        </button>
+        <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="studentModalLabel">parent form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'add-parents' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="Parents_name">Parents Name:</label>
+                                <input type="text" class="form-control" id="Parents_name" name="Parents_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="Email">Email:</label>
+                                <input type="email" class="form-control" id="Email" name="Email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone_Number">Phone_number:</label>
+                                <input type="tel" class="form-control" id="phone_Number" name="phone_Number"
+                                       placeholder="07xxxxxxxx">
+                            </div>
+                            <div class="form-group">
+                                <label for="Occupation">Ocupation:</label>
+                                <input type="text" class="form-control" id="Occupation" name="Occupation">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">parent Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Occupation</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for parent in parents %}
+        <tr>
+            <th scope="row">{{ parent.id }}</th>
+            <td>{{parent.Parents_name}}</td>
+            <td>{{parent.Email}}</td>
+            <td>{{Parent.phone_Number}}</td>
+            <td>{{Parent.Occupation}}</td>
+            <td>
+                <button data-target="#update{{parent.id}}" data-toggle="modal" class="btn btn-sm btn-success">update</button>
+            </td>
+            <td>
+                 <button data-target="#delete{{parent.id}}" data-toggle="modal" class="btn btn-sm btn-info">delete</button>
+            </td>
+        </tr>
+
+         <div class="modal fade" id="update{{parent.id}}" tabindex="-1" role="dialog" aria-labelledby="updateparent"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateparent">parent  form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       <form action="{% url 'update-parent' parent.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="Parents_name">Parents Name:</label>
+                                <input type="text" class="form-control" id="Parents_name" name="Parents_name" value="{{parent.Parents_name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Email">Email:</label>
+                                <input type="email" class="form-control" id="Email" name="Email" value="{{parent.Email}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone_Number">Phone_number:</label>
+                                <input type="tel" class="form-control" id="phone_Number" name="phone_Number"
+                                       placeholder="07xxxxxxxx" value="{{parent.phone_Number}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Occupation">Ocupation:</label>
+                                <input type="text" class="form-control" id="Occupation" name="Occupation" value="{{parent.Occupation}}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+        <!--deletemodal-->
+    <div class="modal fade" id="delete{{parent.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteparent"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteparent">Delete hostel</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'delete-parent' parent.id %}" method="post">
+                                {% csrf_token %}
+                                <p>Are you sure you want to delete "{{ parent.First_name }} {{parent.Last_name}}?"</p>
+                                <button type="submit" class="btn btn-primary Disabled">yes</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</main>
+{% endblock%}

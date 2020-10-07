@@ -1,0 +1,30 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="henryproject">
+    <title>PR system</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link href="{%static 'font-awesome/css/font-awesome.css' %}" type="text/css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/frontend-custom-style.css' %}" rel="stylesheet">
+</head>
+<body>
+<!--topnavbar-->
+{% include 'profile_common_templates/topnav.html' %}
+<div class="container-fluid">
+    <div class="row">
+        {% include 'profile_common_templates/sidebarnav.html' %}
+        {% block content%}
+
+        {% endblock content%}
+    </div>
+</div>
+<script src="{%static 'js/jquery-3.4.1.slim.min.js' %}"></script>
+<script src="{%static 'js/popper.min.js' %}"></script>
+<script src="{%static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

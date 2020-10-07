@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title%}
+Dorms
+{% endblock%}
+{% block content%}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dorms</h1>
+    </div>
+    <div class="row">
+<div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success">
+                    Dorm booking
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Dormcaptain</th>
+                            <th scope="col">status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for Hostel in Hostels %}
+                        <tr>
+                            <th scope="row">{{ hostel.id</th>
+                            <td>{{Hostel.name}}</td>
+                            <td>{{ Hostel.dormcaptain }}</td>
+                        </tr>
+                        {%endfor%}
+
+                        </tbody>
+                    </table>
+                </div>
+                <a href="#">book</a>
+            </div>
+        </div>
+
+</div>
+</main>
+{% endblock%}
+

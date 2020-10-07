@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% block title%}
+dashboard
+{% endblock%}
+{% block content%}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <button type="button" class="btn btn-primary text-right"><a href="#"></a><i class="fa fa-download"
+                                                                                    aria-hidden="true"></i>Generate
+            report
+        </button>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    No of students
+                </div>
+                <div class="card-body text-center">
+                    <b>{{ no_of_students }}</b>
+                </div>
+                <a href="{% url 'students-admin' %}" class="btn btn-primary">students</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    No of teachers
+                </div>
+                <div class="card-body text-center">
+                    <b>{{ no_of_teachers }}</b>
+                </div>
+                <a href="{% url 'teachers-admin' %}" class="btn btn-primary">Teachers</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    No of subjects
+                </div>
+                <div class="card-body text-center">
+                    <b>{{ no_of_subjects }}</b>
+                </div>
+                <a href="{% url 'subjects' %}" class="btn btn-primary">subjects</a>
+            </div>
+        </div>
+    </div>
+
+</main>
+{% endblock%}

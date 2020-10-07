@@ -1,0 +1,105 @@
+<!doctype html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="henry">
+    <title>{% block title %}subjects{% endblock %}</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{%static 'css/bootstrap.min.css'%}">
+    <!-- Custom dashboard style -->
+    <link href="{%static 'css/frontend-custom-style.css' %}" type="text/css" rel="stylesheet">
+    <!--font-awesome css-->
+    <link href="{%static 'font-awesome/css/font-awesome.css' %}" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<!--top bar here-->
+{% include 'frontend/common/navbar.html' %}
+<h2 class="text-center">Select subjects to do!!!!</h2>
+<div class="container">
+    {% include 'sims_common_templates/messages.html' %}
+    {% if Subjects %}
+        <div class="row">
+        {% for Subject in Subjects %}
+            <div class="col-md-4">
+                <div class="card text-dark mb-4">
+                    <img src="{% static 'images/course-image.jpg' %}" alt="" class="card-img-top">
+                    <div class="card">
+                        <ul class="list-group">
+                            <li class="list-group-item">Subject name : {{ Subject.Subject_name }}</li>
+                            <li class="list-group-item">Subject code : {{ Subject.Subject_code }} days</li>
+                            <li class="list-group-item">Subject teacher : {{ Subject.Subject_teacher }}</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#}" class="btn btn-sm btn-success">select</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center">No subjects available</p>
+    {% endif %}
+    </div>
+</div>
+<footer>
+    <div class="row">
+        <div class="col text-center fixed-bottom">
+            <p>central high school.All rights reserved.&copy;2020</p>
+        </div>
+    </div>
+</footer>
+<script src="{%static 'js/jquery-3.4.1.slim.min.js' %}"></script>
+<script src="{%static 'js/popper.min.js' %}"></script>
+<script src="{%static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
+{% extends 'base.html' %}
+{% block title%}
+subjects
+{% endblock%}
+{% block content%}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      {% include 'frontend/common/navbar.html' %}
+<h2 class="text-center">Select subjects to do!!!!</h2>
+<div class="container">
+    {% include 'sims_common_templates/messages.html' %}
+    {% if Subjects %}
+        <div class="row">
+        {% for Subject in Subjects %}
+            <div class="col-md-4">
+                <div class="card text-dark mb-4">
+                    <img src="{% static 'images/course-image.jpg' %}" alt="" class="card-img-top">
+                    <div class="card">
+                        <ul class="list-group">
+                            <li class="list-group-item">Subject name : {{ Subject.Subject_name }}</li>
+                            <li class="list-group-item">Subject code : {{ Subject.Subject_code }} days</li>
+                            <li class="list-group-item">Subject teacher : {{ Subject.Subject_teacher }}</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#}" class="btn btn-sm btn-success">select</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center">No subjects available</p>
+    {% endif %}
+    </div>
+</div>
+<footer>
+    <div class="row">
+        <div class="col text-center fixed-bottom">
+            <p>central high school.All rights reserved.&copy;2020</p>
+        </div>
+    </div>
+</footer>
+</main>
+{% endblock%}

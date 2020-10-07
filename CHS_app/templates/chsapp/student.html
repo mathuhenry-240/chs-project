@@ -1,0 +1,188 @@
+{% extends 'main.html' %}
+{% block title%}
+students details
+{% endblock%}
+{% block content%}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    {% include 'chs_common_templates/messages.html' %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2 text-center">Students Details</h1>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentModal">
+            Admit Student
+        </button>
+        <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="studentModalLabel">Admission form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'admit-student' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="First_name">First Name:</label>
+                                <input type="text" class="form-control" id="First_name" name="First_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="Last_name">Last Name:</label>
+                                <input type="text" class="form-control" id="Last_name"
+                                       name="Last_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="Surname">Surname:</label>
+                                <input type="text" class="form-control" id=" Surname" name="Surname">
+                            </div>
+                            <div class="form-group">
+                                <label for="class_form">Form:</label>
+                                <input type="number" class="form-control" id="  class_form" name="class_form">
+                            </div>
+                            <div class="form-group">
+                                <label for="KCPE_Marks">KCPE Marks:</label>
+                                <input type="number" class="form-control" id="KCPE_Marks" name="KCPE_Marks">
+                            </div>
+                            <div class="form-group">
+                                <label for="Former_school">Former school:</label>
+                                <input type="text" class="form-control" id="Former_school" name="Former_school">
+                            </div>
+                            <div class="form-group">
+                                <label for="DateOfBirth">DOB:</label>
+                                <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth">
+                            </div>
+                            <div class="form-group">
+                                <label for="Subjects_taken">Subjects:</label>
+                                <input type="number" class="form-control" id="Subjects_taken" name="Subjects_taken"
+                                       value="{{Subject_taken}}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Admission no</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">SurName</th>
+            <th scope="col">Form</th>
+            <th scope="col">former school</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+        <tr>
+            <th scope="row">{{ student.id }}</th>
+            <td>{{student.Adm_no}}</td>
+            <td>{{student.First_name}}
+                {{student.Last_name}}
+            </td>
+            <td>{{student.Surname}}</td>
+            </td>
+            <td>{{student.class_form}}</td>
+            <td>{{student.Former_school}}</td>
+            <td>
+                <button data-toggle="modal" data-target="#update{{student.id}}" class="btn btn-sm btn-success">
+                    Update
+                </button>
+            </td>
+            <td>
+                <button data-toggle="modal" data-target="#delete{{student.id}}" class="btn btn-sm btn-warning">
+                    Delete
+                </button>
+            </td>
+        </tr>
+        <div class="modal fade" id="update{{student.id}}" tabindex="-1" role="dialog" aria-labelledby="updatestudent"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updatestudent">update student form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'update-student' student.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="First_Name">First Name:</label>
+                                <input type="text" class="form-control" id="First_Name" name="First_Name"
+                                       value="{{First_name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Last_Name">Last Name:</label>
+                                <input type="text" class="form-control" id="Last_Name"
+                                       name="Last_Name" value="{{Last_name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Surname">Surname:</label>
+                                <input type="text" class="form-control" id="Surname" name="Surname" value="{{Surname}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Class_form">Form:</label>
+                                <input type="number" class="form-control" id="Class_form" name="Class_form"
+                                       value="{{Class_form}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Subjects_taken">Subjects:</label>
+                                <input type="number" class="form-control" id="Subjects_taken" name="Subjects_taken"
+                                       value="{{Subject_taken}}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--deletemodal-->
+        <div class="modal fade" id="delete{{student.id}}" tabindex="-1" role="dialog" aria-labelledby="deletestudent"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deletestudent">Delete student</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'delete-student' student.id %}" method="post">
+                            {% csrf_token %}
+                            <p>Are you sure you want to delete "{{ student.First_name }} {{student.Last_name}}?"</p>
+                            <button type="submit" class="btn btn-primary Disabled">yes</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</main>
+{% endblock%}
+
+{% if request.user.is_authenticated %}
+<p>online</p>
+{% endif %}

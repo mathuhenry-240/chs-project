@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title%}
+personal info
+{% endblock%}
+{% block content%}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">personal dta</h1>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success">
+                    personal data
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">parents Name</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Form</th>
+                            <th scope="col">subjects</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <th scope="row">{{ student.id }}</th>
+                            <td>{{student.First_name}
+                                {{student.Last_name}}
+                                {{student.Surname}}
+                            </td>
+                            <td>{{ student.Parents_name }}</td>
+                            <td>{{student.class_form}}</td>
+                            <td>
+                                <button data-toggle="modal" data-target="#" class="btn btn-sm btn-success">
+                                    subjects
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="card-footer">
+                        <button data-toggle="modal" data-target="#" class="btn btn-sm btn-success">
+                            Update
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+{% endblock%}

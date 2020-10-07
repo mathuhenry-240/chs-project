@@ -1,0 +1,65 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    {% if request.user.is_authenticated %}
+    <p class="text-center">online</p>
+    {% endif %}
+    <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'dashboard-admin' %}">
+                    <span data-feather="home"></span>
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    Dashboard <span></span>
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'students-admin' %}">
+                    <span></span>
+                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                    Students Details
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'subjects' %}">
+                    <span></span>
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    Subjects
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'hostel-dorms' %}">
+                    <span></span>
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    Hostels
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add-fees' %}">
+                    <span></span>
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    Fee
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown">
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'teachers-admin' %}">
+                    <span></span>
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                  Teachers
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'parents' %}">
+                    <span></span>
+                    <i class="fa fa-asterisk" aria-hidden="true"></i>
+                    Parents Details
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>student details</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/frontend-custom-style.css'%} ">
+
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
+</head>
+<body data-spy="scroll">
+{% include 'frontend/common/navbar.html'%}
+<div class="container " style="width:40%;">
+    <div class="bg-info p-5">
+        <h1 class="text-center">Student Registration</h1>
+        <form action="{% url 'student-details' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="First_Name">First Name:</label>
+                <input type="text" class="form-control" id="First_Name" name="First_Name">
+            </div>
+            <div class="form-group">
+                <label for="Last_Name">Last Name:</label>
+                <input type="text" class="form-control" id="Last_Name"
+                       name="Last_Name">
+            </div>
+            <div class="form-group">
+                <label for="Surname">Surname:</label>
+                <input type="text" class="form-control" id="Surname" name="Surname">
+            </div>
+            <div class="form-group">
+                <label for="Class_form">Form:</label>
+                <input type="number" class="form-control" id="Class_form" name="Class_form">
+            </div>
+            <div class="form-group">
+                <label for="DateOfBirth">D.O.B:</label>
+                <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth">
+            </div>
+            <div class="form-group">
+                <label for="Kcpe_Marks">Kcpe Marks:</label>
+                <input type="number" class="form-control" id="Kcpe_Marks" name="Kcpe_Marks">
+            </div>
+            <div class="form-group">
+                <label for="Former_School">Former School:</label>
+                <input type="text" class="form-control" id="Former_School" name="Former_School">
+            </div>
+            <div class="form-group">
+                <label for="Subjects_taken">Subjects:</label>
+                <input type="number" class="form-control" id="Subjects_taken" name="Subjects_taken">
+            </div>
+            <button type="submit" class="btn btn-primary mb-5">Done</button>
+        </form>
+    </div>
+</div>
+
+<script src="{%static 'js/jquery-3.4.1.slim.min.js' %}"></script>
+<script src="{%static 'js/popper.min.js' %}"></script>
+<script src="{%static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
